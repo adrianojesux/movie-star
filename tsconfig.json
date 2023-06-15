@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "react-native",
+    "module": "esnext",
+    "baseUrl": "src",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@ui/*": ["ui/*"],
+      "@hooks/*": ["hooks/*"],
+      "@domain/*": ["domain/*"],
+      "@navigation/*": ["navigation/*"],
+      "@features/*": ["features/*"],
+      "@providers/*": ["providers/*"],
+      "@store/*": ["store/*"],
+      "@styles/*": ["styles/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
