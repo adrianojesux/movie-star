@@ -1,5 +1,14 @@
+plugins {
+    id "io.sentry.android.gradle" version "3.8.0"
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+apply plugin: 'io.sentry.android.gradle'
+
 
 import com.android.build.OutputFile
 
@@ -131,6 +140,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -154,6 +168,16 @@ dependencies {
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
 
+    // HILT
+    // dagger Hilt dependency injection
+    implementation 'com.google.dagger:hilt-android:2.45'
+    kapt 'com.google.dagger:hilt-android-compiler:2.45'
+
+    // Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.squareup.okhttp3', module:'okhttp'
@@ -167,4 +191,18 @@ dependencies {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
+sentry {
+    autoUpload = true
+    uploadNativeSymbols = false
+    includeNativeSources = false
+    debug = true
+    includeSourceContext = true
+    additionalSourceDirsForSourceContext = ["src/main/java"]
+}
+
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
