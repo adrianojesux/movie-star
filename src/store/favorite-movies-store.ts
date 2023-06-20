@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {IMovie} from 'types/Movie';
 import {create} from 'zustand';
-import {persist} from 'zustand/middleware';
+import {createJSONStorage, persist} from 'zustand/middleware';
 import {createSelectors} from './create-selector';
 
 interface FavoriteMovieState {
@@ -23,6 +24,7 @@ const favoriteStoreBase = create(
     }),
     {
       name: '@movie-stars/favorite-movies',
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );

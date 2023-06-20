@@ -5,18 +5,25 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import {singleton} from 'reactject';
 import {Logger} from './logger';
 
-@singleton()
 export class Newtwork {
   private http: AxiosInstance;
+  private static instance: Newtwork;
 
   constructor() {
     this.http = axios.create({
       baseURL: 'https://api.themoviedb.org/3',
     });
     this.interceptors();
+  }
+
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new Newtwork();
+    }
+
+    return this.instance;
   }
 
   private interceptors() {
@@ -48,7 +55,13 @@ export class Newtwork {
     });
   }
 
-  request<T>(args: AxiosRequestConfig<T>) {
-    return this.http.request({...args});
+  async request<R>(args: AxiosRequestConfig) {
+    try {
+      const result = await this.http.request<R>({...args});
+      return result;
+    } catch (error) {
+      Logger.error('HTTP ERROR: ', error);
+      throw error;
+    }
   }
 }

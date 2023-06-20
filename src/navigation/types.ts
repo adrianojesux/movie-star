@@ -1,6 +1,8 @@
-export type SearchStackParams = {
-  search: undefined;
-  detail: {movieId: string};
+import {IMovie} from 'types/Movie';
+
+export type HomeStackParams = {
+  home: undefined;
+  detail: {movie: IMovie};
 };
 
 export type RootBottomParams = {

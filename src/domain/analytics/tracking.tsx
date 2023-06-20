@@ -1,6 +1,5 @@
 import {useEffect} from 'react';
 import {TrackingParams} from './types';
-import {View} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {trackScreen} from './amplitude';
 import {Logger} from '@domain/logger';
@@ -19,5 +18,5 @@ export function TrackingScreen({
     }
   }, [isFocused]);
 
-  return <View>{children}</View>;
+  return <>{children}</>;
 }

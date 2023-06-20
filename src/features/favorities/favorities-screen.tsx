@@ -1,13 +1,32 @@
 import {TrackingScreen} from '@domain/analytics/tracking';
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useFavoriteMovieStore} from '@store/favorite-movies-store';
+import {AppContainer} from '@ui/app-container';
+import {FlatList} from 'react-native';
+import {IMovie} from 'types/Movie';
+import {MovieItem} from './components/movie-item';
 
 export function FavoritiesScreen() {
+  const {movies, unfavoriteMovie} = useFavoriteMovieStore();
+
+  const handleUnfavoriteMovie = (movie: IMovie) => {
+    unfavoriteMovie(movie.id);
+  };
+
   return (
     <TrackingScreen screenName="FAVORITIES_MOVIE_SCREEN">
-      <SafeAreaView style={{flex: 1}}>
-        <Text>Meu Filmes Favoritos</Text>
-      </SafeAreaView>
+      <AppContainer>
+        <FlatList
+          style={{flex: 1}}
+          data={movies}
+          renderItem={({item}) => (
+            <MovieItem
+              movie={item}
+              onClicleDetail={() => {}}
+              onClickUnfavorite={handleUnfavoriteMovie}
+            />
+          )}
+        />
+      </AppContainer>
     </TrackingScreen>
   );
 }

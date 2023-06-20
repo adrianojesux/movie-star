@@ -450,6 +450,8 @@ PODS:
   - RNScreens (3.21.0):
     - React-Core
     - React-RCTImage
+  - RNSVG (13.9.0):
+    - React-Core
   - Sentry (8.8.0):
     - Sentry/Core (= 8.8.0)
     - SentryPrivate (= 8.8.0)
@@ -534,6 +536,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `8.8.0`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -651,6 +654,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Sentry:
     :git: https://github.com/getsentry/sentry-cocoa.git
     :tag: 8.8.0
@@ -723,6 +728,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: 949696f25ec596bfc697fc88e6f95cf0c79669b6
   RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
   RNScreens: d037903436160a4b039d32606668350d2a808806
+  RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   Sentry: 927dfb29d18a14d924229a59cc2ad149f43349f2
   SentryPrivate: 4350d865f898224ab9fa02b37d6ee7fbb623f47e
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
