@@ -3,14 +3,23 @@ import {Button} from './button';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import {IMovie} from 'types/Movie';
 import {Ionicons} from '@expo/vector-icons';
+import {useCallback} from 'react';
 
 type Props = {
   movie: IMovie;
-  onClicleDetail: (movie: IMovie) => void;
+  onClickDetail: (movie: IMovie) => void;
   onClickUnfavorite: (movie: IMovie) => void;
 };
 
-export function MovieItem({movie, onClicleDetail, onClickUnfavorite}: Props) {
+export function MovieItem({movie, onClickDetail, onClickUnfavorite}: Props) {
+  const handleOnclickeDetail = useCallback(() => {
+    onClickDetail(movie);
+  }, []);
+
+  const handleOnClickUnfavorite = useCallback(() => {
+    onClickUnfavorite(movie);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
@@ -46,14 +55,14 @@ export function MovieItem({movie, onClicleDetail, onClickUnfavorite}: Props) {
             <Button
               title="Detalhes"
               width={160}
-              onClick={() => onClicleDetail(movie)}
+              onClick={handleOnclickeDetail}
             />
           </View>
           <View style={styles.buttonRight}>
             <Button
               bgColor="#666"
               width={50}
-              onClick={() => onClickUnfavorite(movie)}
+              onClick={handleOnClickUnfavorite}
               icon={
                 <Ionicons
                   name="md-heart-dislike-outline"

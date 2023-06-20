@@ -1,14 +1,15 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Movie} from '../store/types/movie';
-import {Button} from './button';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
+import {IMovie} from 'types/Movie';
+import {Button} from '@ui/button';
+import {Ionicons} from '@expo/vector-icons';
 
 type Props = {
-  movie: Movie;
-  onClicleDetail: (movie: Movie) => void;
+  movie: IMovie;
+  onClicleFavorite: (movie: IMovie) => void;
 };
 
-export function MovieItem({movie, onClicleDetail}: Props) {
+export function MovieItem({movie, onClicleFavorite}: Props) {
   return (
     <View style={styles.container}>
       <Image
@@ -39,7 +40,11 @@ export function MovieItem({movie, onClicleDetail}: Props) {
             <Text style={styles.paragraph}>{movie.original_language}</Text>
           </Text>
         </View>
-        <Button title="Detalhes" onClick={() => onClicleDetail(movie)} />
+        <Button
+          title="Favorito"
+          onClick={() => onClicleFavorite(movie)}
+          lefIcon={<Ionicons name="heart-outline" size={24} color="#fff" />}
+        />
       </View>
     </View>
   );
