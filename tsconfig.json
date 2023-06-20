@@ -4,6 +4,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "esnext",
     "baseUrl": "src",
