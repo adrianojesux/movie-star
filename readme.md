@@ -17,8 +17,43 @@ App escrito em React Natie para listagem de filmes e criação de lista de favor
 ### Native Modules
 
 - **LoggerModule**: Modulo nativo para fazer a captura de Logs e envia-los para o Sentry.
-  **Android**: Modulo foi escrito em Kotlin, utilizando o Hilt e Dagger para fazer a injeção de denpendência dentro do projeto Android. Faz a integração com o SDK Android do Sentry para fazer o envio do logs e erros capturados.
-  **iOS**: Modulo nativo escrito em Swift, faz a integração com a versão iOS do SDK do Sentry para fazer o envio de logs e erros capturados.
+
+```js
+export const Logger = {
+  log: (...args: any) => {
+    if (__DEV__) {
+      console.log(...args);
+    }
+    LoggerModule.log(JSON.stringify(args));
+  },
+
+  error: (...args: any) => {
+    if (__DEV__) {
+      console.error(...args);
+    }
+    LoggerModule.error('ERROR ::', args);
+  },
+};
+```
+
+**Android**: Modulo foi escrito em Kotlin, utilizando o Hilt e Dagger para fazer a injeção de denpendência dentro do projeto Android. Faz a integração com o SDK Android do Sentry para fazer o envio do logs e erros capturados.
+
+```kt
+class SentryLoggerImpl: SentryLogger {
+  override fun log(message: String) {
+      Sentry.setLevel(SentryLevel.DEBUG)
+      Sentry.captureMessage(message)
+  }
+
+  override fun error(message: String, error: Throwable) {
+      Sentry.setLevel(SentryLevel.ERROR)
+      Sentry.captureMessage(message)
+      Sentry.captureException(error)
+  }
+}
+```
+
+**iOS**: Modulo nativo escrito em Swift, faz a integração com a versão iOS do SDK do Sentry para fazer o envio de logs e erros capturados.
 
 ### Links úteis
 

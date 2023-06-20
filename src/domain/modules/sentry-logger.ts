@@ -1,6 +1,6 @@
 import {NativeModules} from 'react-native';
-import {ISentryLogger} from './type';
+import {ILogger} from './type';
 
-const SentryLogger: ISentryLogger = NativeModules.LoggerModule;
+const LoggerModule: ILogger = NativeModules.LoggerModule;
 
-export {SentryLogger};
+export {LoggerModule};
