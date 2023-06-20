@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import <Sentry/Sentry.h>
 
 @implementation AppDelegate
 
@@ -10,6 +11,20 @@
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
+  
+  [SentrySDK startWithConfigureOptions:^(SentryOptions * _Nonnull options) {
+      options.dsn = @"https://db3d619cfe0d42169da50417e24ec16e@o1118867.ingest.sentry.io/4505374775312384";
+    options.debug = YES;
+    options.enablePreWarmedAppStartTracing = YES;
+    options.attachScreenshot = YES;
+    options.attachViewHierarchy = YES;
+    if (@available(iOS 15.0, *)) {
+      options.enableMetricKit = YES;
+    } else {
+      // Fallback on earlier versions
+    }
+  }];
+  
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
