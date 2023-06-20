@@ -1,6 +1,5 @@
 package com.moviestars;
 import expo.modules.ReactActivityDelegateWrapper;
-import io.sentry.Sentry;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -31,7 +30,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
-    Sentry.captureMessage("Teste de nova mensamgem");
     return new ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED, new DefaultReactActivityDelegate(
         this,
         getMainComponentName(),

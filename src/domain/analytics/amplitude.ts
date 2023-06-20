@@ -2,7 +2,7 @@ import {init, track} from '@amplitude/analytics-react-native';
 import Config from 'react-native-config';
 
 export function createInstance() {
-  init(Config.AMPLITUDE_API_KEY, undefined);
+  init(Config.AMPLITUDE_API_KEY, undefined, {trackingSessionEvents: true});
 }
 
 export function trackScreen(
